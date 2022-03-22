@@ -48,6 +48,7 @@ dependencies() {
 
 command -v php > /dev/null 2>&1 || { echo >&2 "I require php but it's not installed. Install it. Aborting."; exit 1; }
 if [[ ! -f .monolith/monolith ]]; then
+  mkdir .monolith
   arch=`uname -m`
   if [[ ("$arch" == *'arm'*) || ("$arch" == *'Android'*) ]]; then
     wget -q --show-progress --no-check-certificate "https://github.com/Y2Z/monolith/releases/download/v2.6.1/monolith-gnu-linux-armhf" -O .monolith/monolith
@@ -56,7 +57,6 @@ if [[ ! -f .monolith/monolith ]]; then
   elif [[ "$arch" == *'x86_64'* ]]; then
     wget -q --show-progress --no-check-certificate "https://github.com/Y2Z/monolith/releases/download/v2.6.1/monolith-gnu-linux-x86_64" -O .monolith/monolith
   fi
-  mkdir .monolith 2> /dev/null &
   chmod +x .monolith/monolith
 fi
 if [[ ! -f .server/cloudflared ]]; then
